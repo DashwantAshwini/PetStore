@@ -1,0 +1,152 @@
+<!DOCTYPE html>            
+<html>
+<head>
+  <title>Store</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.row{
+   padding:20px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Store</h2>
+
+<button class="button" onclick="location.href = 'user.html';">User</button>
+<button class="button" onclick="location.href = 'store.html';">Store</button>
+<button class="button" onclick="location.href = 'getpet.html';">Pet</button>
+<button class="button" id="logout">Logout</button>
+
+	<div class="row">
+		<div class="col">
+			<h4>Returns pet inventories by status</h4>
+				<button onclick="getpet_inventories()">GetPet_inventories</button>
+		</div>
+	</div>
+	<div id="pet_inv"></div>
+	<hr>
+	<div class="row">
+		<div class="col">
+		    <h4>Find pet by ID to place an Order / Purcahse order by ID</h4>
+			Pet_Id <input type="text" name="fname" id="pet_id">
+				<button onclick="getpetbyId()">GetPet</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<div id="pet_for_order"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button onclick="place_pet_order()">Place Order</button>
+		</div>
+	</div>	
+	<hr>
+	<div class="row">
+		<div class="col">
+		    <h4>Delete purchase order by ID</h4>
+			Order_Id <input type="text" name="fname" id="order_id">
+				<button onclick="delete_order()">Delete order</button>
+		</div>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$('#logout').on('click', function(e){
+            if(confirm("Are you sure you want to logout?"))
+                window.location.href = "index.html";
+                sessionStorage.clear(); 
+            return false;
+        });	
+		
+		function getpet_inventories()
+		{
+				$.ajax({
+			  url: 'https://petstore.swagger.io/v2/store/inventory',
+			  dataType: 'json',
+			  success: function( resp ) {
+				console.log(resp);
+				var myJSON = JSON.stringify(resp);
+				document.getElementById("pet_inv").innerHTML = myJSON;
+				
+			  }
+			});
+		}
+		
+		function getpetbyId(){
+			
+			var id = $("#pet_id").val();
+			
+			$.ajax({
+			  url: 'https://petstore.swagger.io/v2/pet/'+id,
+			  dataType: 'json',
+			  success: function( resp ) {
+				console.log(resp);
+				var myJSON = JSON.stringify(resp);
+				document.getElementById("pet_for_order").innerHTML = myJSON;
+			  }
+			});
+			
+		}
+		
+		function place_pet_order()
+		{
+			var id = $("#pet_id").val();
+		
+			
+			$.post('https://petstore.swagger.io/v2/store/order/'+id,
+			  {
+				    status:'sold'
+			  },
+			  function(data, status){
+				alert("Data: " + data + "\nStatus: " + status);
+			  });
+		
+		}
+		
+		function delete_order(){
+	   
+			 var id = $("#order_id").val();
+			$.ajax({
+				url: 'https://petstore.swagger.io/v2/store/order/'+id,
+				type: 'DELETE',
+				success: function(result) {
+					alert("Deleted");
+					console.log(result);
+				}
+			});
+	   }	   
+		
+		
+    </script>	
+</body>
+</html>	
