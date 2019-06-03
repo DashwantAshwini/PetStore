@@ -1,0 +1,307 @@
+<!DOCTYPE html>            
+<html>
+<head>
+  <title>User</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.row{
+   padding:20px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h2>User</h2>
+
+<button class="button" onclick="location.href = 'user.html';">User</button>
+<button class="button" onclick="location.href = 'store.html';">Store</button>
+<button class="button" onclick="location.href = 'getpet.html';">Pet</button>
+<button class="button" id="logout">Logout</button>
+<div class="row">
+<form method="post" action="">
+  <table class="table">
+    <thead>
+      <tr>
+	    <th>Username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+		<th>Password</th>
+		<th>Phone</th>
+		<th>UserStatus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="username" id="username"></td>
+        <td><input type="text" name="Firstname" id="fnm"></td>
+        <td><input type="text" name="Lastname" id="lnm"></td>
+	    <td><input type="email" name="Email" id="email"></td>
+		<td><input type="password" name="Password" id="psw"></td>
+		<td><input type="text" name="Phone" id="phn"></td>
+		<td><input type="text" name="UserStatus" id="u_status"></td>
+      </tr>
+	  <tr><td><input type="submit" name="register" value="Create User" /></td></tr>
+    </tbody>
+  </table>
+  <p class="form-message"></p>
+</form>  
+</div>
+
+
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+	    <th>Sr</th>
+	    <th>Username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+		<th>Password</th>
+		<th>Phone</th>
+		<th>UserStatus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	    <td>1</td>
+        <td><input type="text" name="username" id="username1"></td>
+        <td><input type="text" name="Firstname" id="fnm1"></td>
+        <td><input type="text" name="Lastname" id="lnm1"></td>
+	    <td><input type="email" name="Email" id="email1"></td>
+		<td><input type="password" name="Password" id="psw1"></td>
+		<td><input type="text" name="Phone" id="phn1"></td>
+		<td><input type="text" name="UserStatus" id="u_status1"></td>
+      </tr>
+	  <tr>
+	    <td>1</td>
+        <td><input type="text" name="username" id="username2"></td>
+        <td><input type="text" name="Firstname" id="fnm2"></td>
+        <td><input type="text" name="Lastname" id="lnm2"></td>
+	    <td><input type="email" name="Email" id="email2"></td>
+		<td><input type="password" name="Password" id="psw2"></td>
+		<td><input type="text" name="Phone" id="phn2"></td>
+		<td><input type="text" name="UserStatus" id="u_status2"></td>
+      </tr>
+	  <tr>
+	    <td>1</td>
+        <td><input type="text" name="username" id="username3"></td>
+        <td><input type="text" name="Firstname" id="fnm3"></td>
+        <td><input type="text" name="Lastname" id="lnm3"></td>
+	    <td><input type="email" name="Email" id="email3"></td>
+		<td><input type="password" name="Password" id="psw3"></td>
+		<td><input type="text" name="Phone" id="phn3"></td>
+		<td><input type="text" name="UserStatus" id="u_status3"></td>
+      </tr>
+	  
+	  <tr><td><button onclick="CreateUserArray()">CreateUserArray</button></td></tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+	<div class="row">
+		<div class="col">
+		    <h4>Get user by user name</h4>
+			user name <input type="text" name="uname" id="user_name">
+				<button onclick="getuserbyName()">GetUser</button>
+		</div>
+	</div>
+	<table class="table">
+    <thead>
+      <tr>
+	    <th>Username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+		<th>Password</th>
+		<th>Phone</th>
+		<th>UserStatus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="username" id="username4"></td>
+        <td><input type="text" name="Firstname" id="fnm4"></td>
+        <td><input type="text" name="Lastname" id="lnm4"></td>
+	    <td><input type="email" name="Email" id="email4"></td>
+		<td><input type="password" name="Password" id="psw4"></td>
+		<td><input type="text" name="Phone" id="phn4"></td>
+		<td><input type="text" name="UserStatus" id="u_status4"></td>
+      </tr>
+	  <tr><td><button onclick="updateUser()">UpdateUser</button></td></tr>
+    </tbody>
+  </table>
+<hr>
+	<div class="row">
+		<div class="col">	
+		    <h4>Delete User</h4>
+			<h6>Find user by name to Delete</h6>
+            User_name <input type="text" name="nameofuser" id="user_name_delete">
+			<button onclick="deleteuser()">DeleteUser</button>
+		</div>
+	</div>
+	<hr>
+
+
+</div>	
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$('#logout').on('click', function(e){
+            if(confirm("Are you sure you want to logout?"))
+                window.location.href = "login.html";
+				sessionStorage.clear();
+            return false;
+        });	
+		
+		
+		$(document).ready(function(){
+		   $("form").submit(function(event){
+			  event.preventDefault();
+			  var username = $("#username").val();
+			  var forename = $("#fnm").val();
+			  var surname = $("#lnm").val();
+			  var email = $("#email").val();
+			  var password = $("#psw").val();
+			  var phone = $("#phn").val();
+			  var userStatus = $("#u_status").val();
+
+			  $(".form-message").load("https://petstore.swagger.io/v2/user", {
+			     username : username,
+				 firstName : forename,
+				 lastName : surname,
+				 email : email,
+				 password : password,
+				 phone : phone,
+				 userStatus: userStatus,
+			  });
+
+		   });
+		});
+		
+		
+		function CreateUserArray(){
+		  username = [];  forename = [];  surname = [];  email = [];  password = [];  phone = [];  userStatus = [];
+		  username[0] = $("#username1").val(); username[1] = $("#username2").val(); username[2] = $("#username3").val();
+		  forename[0] = $("#fnm1").val(); forename[1] = $("#fnm2").val(); forename[2] = $("#fnm3").val();
+		  surname[0] = $("#lnm1").val(); surname[1] = $("#lnm2").val(); surname[2] = $("#lnm3").val();
+		  email[0] = $("#email1").val(); email[1] = $("#email2").val(); email[2] = $("#email3").val();
+		  password[0] = $("#psw1").val(); password[1] = $("#psw2").val(); password[2] = $("#psw3").val();
+		  phone[0] = $("#phn1").val(); phone[1] = $("#phn2").val(); phone[2] = $("#phn3").val();
+		  userStatus[0] = $("#u_status1").val(); userStatus[1] = $("#u_status2").val(); userStatus[2] = $("#u_status3").val();
+		 
+			 $.ajax({
+			   type: "POST",
+			   data: {
+			     username : username,
+				 firstName : forename,
+				 lastName : surname,
+				 email : email,
+				 password : password,
+				 phone : phone,
+				 userStatus: userStatus,},
+			   url: "https://petstore.swagger.io/v2/user",
+			   success: function(msg){
+				 console.log(msg);
+			   }
+			});
+
+
+		}
+		
+		
+		function getuserbyName(){
+			
+			var name = $("#user_name").val();
+			
+			$.ajax({
+			  url: 'https://petstore.swagger.io/v2/user/'+name,
+			  dataType: 'json',
+			  success: function( resp ) {
+				console.log(resp);
+				$("#username4").val(resp.username);
+				$("#fnm4").val(resp.firstName);
+				$("#lnm4").val(resp.lastName);
+				$("#email4").val(resp.email);
+				$("#psw4").val(resp.password);
+				$("#phn4").val(resp.phone);
+				$("#u_status4").val(resp.userStatus);
+			  }
+			});
+			
+		}
+		
+		function updateUser(){
+		      var username = $("#username4").val();
+			  var forename = $("#fnm4").val();
+			  var surname = $("#lnm4").val();
+			  var email = $("#email4").val();
+			  var password = $("#psw4").val();
+			  var phone = $("#phn4").val();
+			  var userStatus = $("#u_status4").val();
+				
+				$.ajax({ url: 'https://petstore.swagger.io/v2/user/'+username,
+					 type: 'PUT',
+					 contentType: 'application/json',
+					 data: JSON.stringify({
+							username : username,
+							 firstName : forename,
+							 lastName : surname,
+							 email : email,
+							 password : password,
+							 phone : phone,
+							 userStatus: userStatus,
+						}),
+					  function(data, status){
+						alert("Data: " + data + "\nStatus: " + status);
+						}
+					  });
+		}
+		
+		 function deleteuser(){
+	   
+	       
+		var name = $("#user_name_delete").val();
+			$.ajax({
+				url: 'https://petstore.swagger.io/v2/user/'+name,
+				type: 'DELETE',
+				success: function(result) {
+					alert("Deleted");
+					console.log(result);
+				}
+			});
+	   }	   
+		
+		
+		
+    </script>	
+</body>
+</html>	
